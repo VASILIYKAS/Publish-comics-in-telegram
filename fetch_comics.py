@@ -1,6 +1,5 @@
 import requests
 import random
-import os
 
 
 RANDOM_RANGE_START = 1
@@ -17,7 +16,4 @@ def get_random_comics_info():
     comics_title = comics['title']
     comics_image_url = comics['img']
 
-    extension = os.path.splitext(comics_image_url)[1]
-    file_name = comics_title + extension
-
-    return comics_title, comics_image_url, file_name
+    return comics_title, comics_image_url

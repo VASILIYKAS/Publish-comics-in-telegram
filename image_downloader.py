@@ -1,9 +1,9 @@
 import requests
 
 
-def dowload_comics(url, file_name):
+def dowload_comics(url, comics_title):
     response = requests.get(url)
     response.raise_for_status()
 
-    with open(file_name, 'wb') as file:
+    with open(comics_title, 'wb') as file:
         file.write(response.content)
