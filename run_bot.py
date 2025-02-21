@@ -4,7 +4,7 @@ from telegram import Bot
 from fetch_comics import get_random_comics_info
 from image_downloader import dowload_comics
 from post_telegram_bot import post_image
-from image_handler import check_size, remove_comics
+from image_handler import remove_comics
 
 
 def main():
@@ -17,12 +17,8 @@ def main():
     comics_title, comics_image_url = get_random_comics_info()
     try:
         dowload_comics(comics_image_url, comics_title)
-        
-        if check_size(comics_title):
-            post_image(bot, channel_id, comics_title)
-            remove_comics(comics_title)
-        else:
-            print(f'The size of the image {os.path.basename(comics_title)} exceeds 20 MB.')
+        post_image(bot, channel_id, comics_title)
+
     finally:
         if os.path.exists(comics_title):
             remove_comics(comics_title)
