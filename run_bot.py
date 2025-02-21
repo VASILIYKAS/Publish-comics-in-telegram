@@ -15,12 +15,17 @@ def main():
     channel_id = os.environ['TG_CHAT_ID']
 
     comics_title, comics_image_url = get_random_comics_info()
-    dowload_comics(comics_image_url, comics_title)
-    if check_size(comics_title):
-        post_image(bot, channel_id, comics_title)
-        remove_comics(comics_title)
-    else:
-        f'The size of the image {os.path.basename(comics_title)} exceeds 20 MB.'
+    try:
+        dowload_comics(comics_image_url, comics_title)
+        
+        if check_size(comics_title):
+            post_image(bot, channel_id, comics_title)
+            remove_comics(comics_title)
+        else:
+            print(f'The size of the image {os.path.basename(comics_title)} exceeds 20 MB.')
+    finally:
+        if os.path.exists(comics_title):
+            remove_comics(comics_title)
 
 
 if __name__ == '__main__':
