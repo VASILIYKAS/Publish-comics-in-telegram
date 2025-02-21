@@ -1,9 +1,12 @@
 import os
 
 
-def get_file_name(comics_image_url, comics_title):
+def check_size(file_name):
+    twenty_megabytes = 20000000
 
-    extension = os.path.splitext(comics_image_url)[1]
-    file_name = comics_title + extension
+    size_image = os.path.getsize(file_name)
+    return size_image < twenty_megabytes
+    
 
-    return file_name
+def remove_comics(file_name):
+    os.remove(file_name)

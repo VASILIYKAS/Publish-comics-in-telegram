@@ -2,7 +2,6 @@ import requests
 
 
 def dowload_comics(url, file_name):
-
     response = requests.get(url)
     response.raise_for_status()
 
