@@ -4,7 +4,6 @@ from telegram import Bot
 from fetch_comics import get_random_comics_info
 from image_downloader import dowload_comics
 from post_telegram_bot import post_image
-from image_handler import remove_comics
 
 
 def main():
@@ -21,7 +20,7 @@ def main():
 
     finally:
         if os.path.exists(comics_title):
-            remove_comics(comics_title)
+            os.remove(comics_title)
 
 
 if __name__ == '__main__':
